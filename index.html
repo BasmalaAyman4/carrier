@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <div class="row login">
+            <div class="col-sm-4 logo__body">
+                <img alt="" src="img/Logo. 1.png" class="logo">
+                <P class="logo__para">Trauxit</P>
+                <h1 class="login__title">WE’RE CHANGING</h1>
+                <p class="login__para">THE WAY THE WORLD THINKS ABOUT FREIGHT </p>
+            </div>
+            <div class="col-sm-8 login__body">
+                <div class="mob">
+                    <img alt="" src="img/Logo. 1.png" class="logo">
+                    <P class="logo__para">Trauxit</P>
+                </div>
+                <div>
+                    <h4 class="text-center w">Which best describes you ?</h4>
+                    <form id="form1">
+                        <div>
+                            <div class="choose">
+                                <div class="radio">
+                                    <span for="owner">Owner Operator</span>
+                                    <input type="radio" id="owner" name="describes" value="owner" class="radio__btn" />
+                                </div>
+                                <p>You own your vehicle and have authority to book your own loads for you or your fleet
+                                </p>
+                            </div>
+                            <div class="choose">
+                                <div class="radio">
+                                    <span for="company">Company Driver or Leased on Carrier</span>
+                                    <input type="radio" id="company" name="describes" value="company"
+                                        class="radio__btn" />
+                                </div>
+                                <p>A company owns the truck drive and you move loads that the company assigns to you</p>
+                            </div>
+                            <div class="choose">
+                                <div class="radio">
+                                    <span for="dispatcher">Dispatcher</span>
+                                    <input type="radio" id="dispatcher" name="describes" value="dispatcher"
+                                        class="radio__btn" />
+                                </div>
+                                <p>You mostly assign loads to other drivers, and either drive or dont drive yourself</p>
+                            </div>
+                        </div>
+                        <p id="error-message" class="error-message" style="display: none;">Please choose an option.</p>
+                        <button class="continuse__btn describe" type="submit">Continuse</button>
+                    </form>
+
+                </div>
+                <p class="signup__para describe__para"> Already have an account ? <a href="/login.html">Login</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- 
+    <script>
+        const form1 = document.getElementById('form1');
+
+
+        form1.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            let rates = document.getElementsByName('describes');
+            let rate_value;
+            for (let i = 0; i < rates.length; i++) {
+                if (rates[i].checked) {
+                    rate_value = rates[i].value;
+                }
+            }
+            const formData = {
+                rate_value
+            };
+            // Store form1 data in localStorage
+            localStorage.setItem('formData', JSON.stringify(formData));
+            // Redirect to form2.html
+            window.location.href = 'signup.html';
+            console.log(formData)
+        });
+    </script> -->
+    <script>
+        const form1 = document.getElementById('form1');
+        const errorMessage = document.getElementById('error-message');
+        form1.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (form1.checkValidity()) {
+                let rates = document.getElementsByName('describes');
+                let rate_value;
+                let checked = false;
+                for (let i = 0; i < rates.length; i++) {
+                    if (rates[i].checked) {
+                        rate_value = rates[i].value;
+                        checked = true;
+                        break;
+                    }
+                }
+                if (checked) {
+                    const formData = {
+                        rate_value
+                    };
+                    // Store form1 data in localStorage
+                    localStorage.setItem('formData', JSON.stringify(formData));
+                    // Redirect to form2.html
+                    window.location.href = 'signup.html';
+                    console.log(formData);
+                } else {
+                    errorMessage.style.display = 'block'; // Show error message
+                }
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/js.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
+    </script>
+
+</body>
+
+</html>

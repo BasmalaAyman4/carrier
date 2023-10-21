@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <section class="container">
+        <div class="row login">
+            <div class="col-sm-4 logo__body">
+                <img alt="" src="img/Logo. 1.png" class="logo">
+                <P class="logo__para">Trauxit</P>
+                <h1 class="login__title">WE’RE CHANGING</h1>
+                <p class="login__para">THE WAY THE WORLD THINKS ABOUT FREIGHT </p>
+            </div>
+
+            <div class="col-sm-8 login__body">
+                <div class="mob">
+                    <img alt="" src="img/Logo. 1.png" class="logo">
+                    <P class="logo__para">Trauxit</P>
+                </div>
+                <form id="form3">
+                    <p class="sign__para">Sign-Up</p>
+                    <div class="group">
+                        <input name="Password" id="Password" type="password" class="input">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Password</label>
+                        <p class="error-msg passError"></p>
+                    </div>
+                    <div class="group">
+                        <input name="ConfirmPass" id="ConfirmPass" type="password" class="input">
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Confirm passowrd</label>
+                        <p class="error-msg conError"></p>
+                    </div>
+                    <p class="error-msg Error"></p>
+                    <button class="continuse__btn" type="submit">Sign Up</button>
+                </form>
+                <p class="signup__para describe__para"> Already have an account ? <a href="/login.html">Login</a></p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form3 = document.getElementById('form3');
+        let inputs = document.querySelectorAll('input');
+        form3.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const errorMessages = document.querySelectorAll('.error-msg');
+            errorMessages.forEach(function (errorMessage) {
+                errorMessage.innerText = '';
+            });
+            const password = form3.elements['Password'].value;
+            if (password.trim() === '') {
+                displayError('passError', 'Please enter your password');
+                return;
+            }
+            const confirmPass = form3.elements['ConfirmPass'].value;
+            if (confirmPass.trim() === '') {
+                displayError('conError', 'Please enter your confirm password');
+                return;
+            }
+            if (confirmPass.trim() !== password.trim()) {
+                displayError('Error', 'password and confirm password not match');
+                return;
+            }
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            formData.password = password;
+            formData.confirmPass = confirmPass;
+            localStorage.setItem('formData', JSON.stringify(formData));
+            window.location.href = 'trailer.html';
+            console.log(formData)
+        });
+        function displayError(elementId, message) {
+            const errorElement = document.querySelector(`.${elementId}`);
+            errorElement.innerText = message;
+        }
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/js.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
+    </script>
+    <!--  <script>
+        const form3 = document.getElementById('form3');
+        form3.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            const Password = form3.elements['Password'].value
+            const ConfirmPass = form3.elements['ConfirmPass'].value
+
+            const formData = JSON.parse(localStorage.getItem('formData'));
+            formData.Password = Password;
+            formData.ConfirmPass = ConfirmPass;
+            localStorage.setItem('formData', JSON.stringify(formData));
+            window.location.href = 'trailer.html';
+            console.log(formData)
+        });
+    </script> -->
+
+</body>
+
+</html>

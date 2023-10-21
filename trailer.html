@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,100;1,300&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <section class="container">
+        <div class="row login">
+            <div class="col-sm-4 logo__body">
+                <img alt="" src="img/Logo. 1.png" class="logo">
+                <P class="logo__para">Trauxit</P>
+                <h1 class="login__title">WE’RE CHANGING</h1>
+                <p class="login__para">THE WAY THE WORLD THINKS ABOUT FREIGHT </p>
+            </div>
+            <div class="col-sm-8 login__body">
+                <div class="mob">
+                    <img alt="" src="img/Logo. 1.png" class="logo">
+                    <P class="logo__para">Trauxit</P>
+                </div>
+                <div>
+                    <h4 class="kind__title"></h4>
+                    <p class="kind__para">if the driver has more than one trailer, pick the one that is driven most
+                        often</p>
+                    <form id="form4">
+                        <div class="mb-3">
+                            <div class="choose">
+                                <div class="trailer">
+                                    <span for="owner">53'Dry Van</span>
+                                    <input type="radio" id="Dry" name="trailer" value="Dry" class="radio__btn" />
+                                </div>
+                            </div>
+                            <div class="choose">
+                                <div class="trailer">
+                                    <span for="Reefer">53'Reefer</span>
+                                    <input type="radio" id="Reefer" name="trailer" value="Reefer" class="radio__btn" />
+                                </div>
+                            </div>
+                            <div class="choose">
+                                <div class="trailer">
+                                    <span for="Flat">Flat Bed</span>
+                                    <input type="radio" id="Flat" name="trailer" value="Flat" class="radio__btn" />
+                                </div>
+                            </div>
+                            <div class="choose">
+                                <div class="trailer">
+                                    <span for="haven't">I don't have a tralier</span>
+                                    <input type="radio" id="haven't" name="trailer" value="havent" class="radio__btn" />
+                                </div>
+                            </div>
+                            <p id="error-message" class="error-message" style="display: none;">Please choose an option.
+                            </p>
+                        </div>
+
+                        <button class="continuse__btn describe" type="submit">Continuse</button>
+                    </form>
+                    <div id="success-message" class="alert alert-success mt-2" style="display: none;" role="alert">
+                        Sign Up Successfully
+                    </div>
+                </div>
+                <p class="signup__para describe__para"> Already have an account ? <a href="/login.html">Login</a></p>
+            </div>
+        </div>
+    </section>
+    <script>
+        const form = document.getElementById('form4');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        const formData = JSON.parse(localStorage.getItem('formData'));
+        const kind = document.querySelector('.kind__title')
+        kind.innerHTML = `${formData.Username}, what kind of trailer do usually drive ?`
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            if (form.checkValidity()) {
+                let trailers = document.getElementsByName('trailer');
+                let trailer_value;
+                let checked = false;
+                for (let i = 0; i < trailers.length; i++) {
+                    if (trailers[i].checked) {
+                        trailer_value = trailers[i].value;
+                        checked = true;
+                        break;
+                    }
+                }
+                if (checked && trailer_value === 'havent') {
+                    const formData = JSON.parse(localStorage.getItem('formData'));
+                    formData.trailer_value = trailer_value;
+                    /* fetch('',{
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.json())
+                    .then(data =>{
+                        console.log('api response',data)
+                        localStorage.removeItem('formData')
+                    })
+                    .catch(error =>{
+                        console.log('api error',error)
+                    }) */
+                    successMessage.style.display = 'block';
+                    console.log(formData);
+                }
+                else if (checked && trailer_value !== 'havent') {
+                    const formData = JSON.parse(localStorage.getItem('formData'));
+                    formData.trailer_value = trailer_value;
+                    localStorage.setItem('formData', JSON.stringify(formData));
+                    window.location.href = 'dot.html';
+                    console.log(formData);
+                } else {
+                    errorMessage.style.display = 'block'; // Show error message
+                }
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/js.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
+    </script>
+</body>
+
+</html>
